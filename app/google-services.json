@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "254266861680",
+    "firebase_url": "https://projetandroid-4c1cd.firebaseio.com",
+    "project_id": "projetandroid-4c1cd",
+    "storage_bucket": "projetandroid-4c1cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254266861680:android:53585eee8e284e96",
+        "android_client_info": {
+          "package_name": "cachecartecartecache.emp.com.cachecartecartecache"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254266861680-715jba2lu6nlpirl6jnkfl5160ludoii.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cachecartecartecache.emp.com.cachecartecartecache",
+            "certificate_hash": "5469e36528087c8b25fd46cf8f0bc1fbca8c39f0"
+          }
+        },
+        {
+          "client_id": "254266861680-igq52j4cdp2eha84j65j0ih1l9uilpjc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk9EEqXevBOqMKe_3Lkc0cre88bXoM0KQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254266861680-igq52j4cdp2eha84j65j0ih1l9uilpjc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
