@@ -26,5 +26,13 @@ public class GameActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Not Equal", Toast.LENGTH_LONG).show();
         }
+        displayCards();
     }
+
+    private void displayCards(){
+        for (int i=0; i<cards.size(); i++) {
+            Toast.makeText(this, cards.get(i).getCardId(), Toast.LENGTH_LONG).show();
+        }
+    }
+
 }

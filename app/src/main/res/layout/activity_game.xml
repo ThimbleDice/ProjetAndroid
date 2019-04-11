@@ -42,7 +42,7 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card0"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
@@ -70,7 +70,7 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card1"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
@@ -98,7 +98,7 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card2"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
@@ -126,134 +126,7 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:background="@drawable/moon"
-                            android:scaleType="centerInside"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="H,1:1"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </android.support.constraint.ConstraintLayout>
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.25">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25">
-
-                    <android.support.constraint.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitStart">
-
-                        <ImageView
-                            android:id="@+id/image"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:background="@drawable/moon"
-                            android:scaleType="centerInside"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="H,1:1"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </android.support.constraint.ConstraintLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25">
-
-                    <android.support.constraint.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitStart">
-
-                        <ImageView
-                            android:id="@+id/image"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:background="@drawable/moon"
-                            android:scaleType="centerInside"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="H,1:1"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </android.support.constraint.ConstraintLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25">
-
-                    <android.support.constraint.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitStart">
-
-                        <ImageView
-                            android:id="@+id/image"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:background="@drawable/moon"
-                            android:scaleType="centerInside"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="H,1:1"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </android.support.constraint.ConstraintLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25">
-
-                    <android.support.constraint.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitStart">
-
-                        <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card3"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
@@ -296,7 +169,7 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card4"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
@@ -324,7 +197,7 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card5"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
@@ -352,7 +225,7 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card6"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
@@ -380,7 +253,7 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card7"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
@@ -423,7 +296,7 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card8"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
@@ -451,7 +324,7 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card9"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
@@ -479,7 +352,7 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card10"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
@@ -507,7 +380,134 @@
                         android:scaleType="fitStart">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/image_card11"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:background="@drawable/moon"
+                            android:scaleType="centerInside"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,1:1"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitStart">
+
+                        <ImageView
+                            android:id="@+id/image_card12"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:background="@drawable/moon"
+                            android:scaleType="centerInside"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,1:1"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitStart">
+
+                        <ImageView
+                            android:id="@+id/image_card13"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:background="@drawable/moon"
+                            android:scaleType="centerInside"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,1:1"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitStart">
+
+                        <ImageView
+                            android:id="@+id/image_card14"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:background="@drawable/moon"
+                            android:scaleType="centerInside"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,1:1"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitStart">
+
+                        <ImageView
+                            android:id="@+id/image_card15"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="4dp"
