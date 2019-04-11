@@ -1,31 +1,41 @@
 package cachecartecartecache.emp.com.cachecartecartecache;
 
-import android.graphics.Bitmap;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-
-    List<Card> cards = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setListener();
+    }
 
-        cards.add(new Card(null, "123"));
-        cards.add(new Card(null, "456"));
-        cards.add(new Card(null, "789"));
-        cards.add(new Card(null, "123"));
+    private void setListener(){
+        findViewById(R.id.btn_play).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendToNewGame();
+            }
+        });
+        findViewById(R.id.btn_custom).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendToCustom();
+            }
+        });
+    }
 
-        if(cards.get(0).equals(cards.get(3))){
-            Toast.makeText(this, "Equal", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(this, "Not Equal", Toast.LENGTH_LONG).show();
-        }
+    private void sendToNewGame(){
+        Intent sendToNewGame = new Intent(this, GameActivity.class);
+        startActivity(sendToNewGame);
+    }
+
+    private void sendToCustom(){
+        Intent sendToCustomTiles = new Intent(this, CustomTilesActivity.class);
+        startActivity(sendToCustomTiles);
     }
 }

@@ -2,7 +2,7 @@ package cachecartecartecache.emp.com.cachecartecartecache;
 
 import android.graphics.Bitmap;
 
-public final class Card {
+public class Card {
     private Bitmap picture;
     private String cardId;
 
