@@ -3,7 +3,9 @@ package cachecartecartecache.emp.com.cachecartecartecache;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -102,7 +104,7 @@ public class GameActivity extends AppCompatActivity {
                         }
                         if(cardsToCompare.size() == 2){
                             wait=true;
-                            new android.os.Handler().postDelayed(
+                            new Handler().postDelayed(
                                     new Runnable() {
                                         public void run() {
                                             compareCard();
@@ -110,7 +112,7 @@ public class GameActivity extends AppCompatActivity {
                                             wait=false;
                                         }
                                     },
-                                    1000);
+                                    300);
                         }
                     }
                 }
@@ -120,14 +122,47 @@ public class GameActivity extends AppCompatActivity {
 
     private void compareCard(){
         if(cards.get(cardsToCompare.get(0)).equals(cards.get(cardsToCompare.get(1)))){
+            animateCardToComparePar();
             cardsFound.add(cardsToCompare.get(0));
             cardsFound.add(cardsToCompare.get(1));
             if(cardsFound.size() == cards.size()){
-                win();
+                new Handler().postDelayed(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                win();
+                            }
+                        },300
+                );
             }
         }else{
             turnComparedCardFaceDown();
         }
+    }
+
+    private void animateCardToComparePar(){
+        final ImageView[] imageViews = getCardsToCompareImageView();
+        final int imageViewsLength = imageViews.length;
+        for (int i=0; i<imageViewsLength; i++) {
+            startSizeAnimation(imageViews[i], 1.4f, 1.4f, 300);
+        }
+        new Handler().postDelayed(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i=0; i<imageViewsLength; i++) {
+                            startSizeAnimation(imageViews[i], 1f, 1f, 300);
+                        }
+                    }
+                },500
+        );
+    }
+
+    private void startSizeAnimation(ImageView imageView, float scaleX, float scaleY, int duration){
+        imageView.animate().
+                scaleX(scaleX).
+                scaleY(scaleY).
+                setDuration(duration).start();
     }
 
     private void win(){
@@ -136,15 +171,23 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void turnComparedCardFaceDown(){
+        ImageView[] imageViews = getCardsToCompareImageView();
+        imageViews[0].setImageResource(R.drawable.moon);
+        imageViews[1].setImageResource(R.drawable.moon);
+    }
+
+    private ImageView[] getCardsToCompareImageView(){
+        ImageView[] imageViews = new ImageView[2];
+
         String imageViewId = "image_card"+cardsToCompare.get(0);
         int resID = getResources().getIdentifier(imageViewId, "id", getPackageName());
-        ImageView imageView = findViewById(resID);
-        imageView.setImageResource(R.drawable.moon);
+        imageViews[0] = findViewById(resID);
 
         imageViewId = "image_card"+cardsToCompare.get(1);
         resID = getResources().getIdentifier(imageViewId, "id", getPackageName());
-        imageView = findViewById(resID);
-        imageView.setImageResource(R.drawable.moon);
+        imageViews[1] = findViewById(resID);
+
+        return imageViews;
     }
 
     private void turnCardFaceUp(ImageView imageView){
