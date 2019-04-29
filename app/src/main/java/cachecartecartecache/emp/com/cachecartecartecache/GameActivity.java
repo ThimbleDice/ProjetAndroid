@@ -139,7 +139,15 @@ public class GameActivity extends AppCompatActivity {
                 );
             }
         }else{
-            turnComparedCardFaceDown();
+            final ImageView[] imageViews = getCardsToCompareImageView();
+            new Handler().postDelayed(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            turnComparedCardFaceDown(imageViews);
+                        }
+                    },200
+            );
         }
     }
 
@@ -174,8 +182,7 @@ public class GameActivity extends AppCompatActivity {
         sendToMain();
     }
 
-    private void turnComparedCardFaceDown(){
-        ImageView[] imageViews = getCardsToCompareImageView();
+    private void turnComparedCardFaceDown(ImageView[] imageViews){
         imageViews[0].setImageResource(R.drawable.moon);
         imageViews[1].setImageResource(R.drawable.moon);
     }

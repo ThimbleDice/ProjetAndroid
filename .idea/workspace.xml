@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="44126974-8a0c-4d69-bbbd-ca7216febdb9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_0.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_0.xml" />
@@ -34,6 +33,8 @@
       <change beforePath="$PROJECT_DIR$/ProjetAndroid.iml" afterPath="$PROJECT_DIR$/ProjetAndroid.iml" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/cachecartecartecache/emp/com/cachecartecartecache/GameActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/cachecartecartecache/emp/com/cachecartecartecache/GameActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/cachecartecartecache/emp/com/cachecartecartecache/Music.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/raw/victory.mp3" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -93,17 +94,19 @@
       <file leaf-file-name="GameActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/cachecartecartecache/emp/com/cachecartecartecache/GameActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="172" column="22" lean-forward="true" selection-start-line="172" selection-start-column="22" selection-end-line="172" selection-end-column="22" />
+            <state relative-caret-position="347">
+              <caret line="148" column="23" lean-forward="false" selection-start-line="148" selection-start-column="23" selection-end-line="148" selection-end-column="23" />
               <folding>
                 <element signature="method#doubleUrl#0;class#GameActivity#0" expanded="false" />
                 <element signature="method#randomizeUrlArray#0;class#GameActivity#0" expanded="false" />
                 <element signature="method#setImageViewListener#0;class#GameActivity#0" expanded="false" />
-                <element signature="method#compareCard#0;class#GameActivity#0" expanded="false" />
+                <element signature="e#5394#5591#0" expanded="true" />
+                <element signature="e#5590#5591#0" expanded="true" />
+                <element signature="e#5776#5984#0" expanded="true" />
+                <element signature="e#5983#5984#0" expanded="true" />
                 <element signature="method#animateCardToComparePar#0;class#GameActivity#0" expanded="false" />
                 <element signature="method#startSizeAnimation#0;class#GameActivity#0" expanded="false" />
-                <element signature="method#turnComparedCardFaceDown#0;class#GameActivity#0" expanded="false" />
-                <element signature="method#getCardsToCompareImageView#0;class#GameActivity#0" expanded="false" />
+                <element signature="method#win#0;class#GameActivity#0" expanded="false" />
                 <element signature="method#turnCardFaceUp#0;class#GameActivity#0" expanded="false" />
                 <element signature="method#downloadImages#0;class#GameActivity#0" expanded="false" />
                 <element signature="method#downloadImage#0;class#GameActivity#0" expanded="false" />
@@ -124,6 +127,11 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>startSizeAnimation</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -2421,7 +2429,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2465,17 +2473,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/cachecartecartecache/emp/com/cachecartecartecache/GameActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="172" column="22" lean-forward="true" selection-start-line="172" selection-start-column="22" selection-end-line="172" selection-end-column="22" />
+        <state relative-caret-position="347">
+          <caret line="148" column="23" lean-forward="false" selection-start-line="148" selection-start-column="23" selection-end-line="148" selection-end-column="23" />
           <folding>
             <element signature="method#doubleUrl#0;class#GameActivity#0" expanded="false" />
             <element signature="method#randomizeUrlArray#0;class#GameActivity#0" expanded="false" />
             <element signature="method#setImageViewListener#0;class#GameActivity#0" expanded="false" />
-            <element signature="method#compareCard#0;class#GameActivity#0" expanded="false" />
+            <element signature="e#5394#5591#0" expanded="true" />
+            <element signature="e#5590#5591#0" expanded="true" />
+            <element signature="e#5776#5984#0" expanded="true" />
+            <element signature="e#5983#5984#0" expanded="true" />
             <element signature="method#animateCardToComparePar#0;class#GameActivity#0" expanded="false" />
             <element signature="method#startSizeAnimation#0;class#GameActivity#0" expanded="false" />
-            <element signature="method#turnComparedCardFaceDown#0;class#GameActivity#0" expanded="false" />
-            <element signature="method#getCardsToCompareImageView#0;class#GameActivity#0" expanded="false" />
+            <element signature="method#win#0;class#GameActivity#0" expanded="false" />
             <element signature="method#turnCardFaceUp#0;class#GameActivity#0" expanded="false" />
             <element signature="method#downloadImages#0;class#GameActivity#0" expanded="false" />
             <element signature="method#downloadImage#0;class#GameActivity#0" expanded="false" />
