@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CacheCarteCarteCache</string>
+    <string name="channelName">NotificationCacheCarteCarteCache</string>
+    <string name="channelDescription">Notification CacheCarteCarteCache</string>
+    <string name="winTitle">Win</string>
+    <string name="winMessage">Congratulations</string>
 </resources>
