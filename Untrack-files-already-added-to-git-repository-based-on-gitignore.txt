@@ -1,0 +1,5 @@
+http://www.codeblocq.com/2016/01/Untrack-files-already-added-to-git-repository-based-on-gitignore/
+
+git rm -r --cached .
+git add .
+git commit -m ".gitignore fix"
