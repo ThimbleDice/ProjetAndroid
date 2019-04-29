@@ -1,12 +1,19 @@
 package cachecartecartecache.emp.com.cachecartecartecache;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,11 +38,13 @@ public class GameActivity extends AppCompatActivity {
     String[] imageUrls = new String[8];
     Boolean wait;
     Music music;
+    NotificationManager notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        createNotificationChannel();
         initializeVariable();
         doubleUrl();
         randomizeUrlArray();
@@ -54,6 +63,38 @@ public class GameActivity extends AppCompatActivity {
         imageUrls[6] = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Tux.png/220px-Tux.png";
         imageUrls[7] = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png";
         music = new Music(MediaPlayer.create(this, R.raw.victory));
+    }
+
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            String channelId = "11";
+            CharSequence channelName = getString(R.string.channelName);
+            String channelDescription = getString(R.string.channelDescription);
+            int channelImportance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, channelImportance);
+            channel.setDescription(channelDescription);
+            notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public static Notification createNotification(Context context, String title, String message){
+        Intent mainActivityIntent = new Intent(context, MainActivity.class);
+
+        NotificationCompat.Builder builder = new
+                NotificationCompat.Builder(context, "11")
+                .setSmallIcon(R.drawable.smash_ball)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .addAction(R.drawable.smash_ball, "Retourner à l'activité principale", PendingIntent.getActivity(context, 0, mainActivityIntent, 0));
+
+        return builder.build();
+    }
+
+    private void sendNotification(String title, String message){
+        Notification notification = createNotification(this, title, message);
+        notificationManager.notify(1, notification);
     }
 
     private void doubleUrl(){
@@ -177,7 +218,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void win(){
-        Toast.makeText(this, "WIN", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.winTitle), Toast.LENGTH_LONG).show();
+        sendNotification(getString(R.string.winTitle), getString(R.string.winMessage));
         music.start();
         sendToMain();
     }
