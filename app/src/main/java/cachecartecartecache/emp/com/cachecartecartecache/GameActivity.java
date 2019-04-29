@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -29,13 +30,21 @@ public class GameActivity extends AppCompatActivity {
     List<Integer> cardsFound = new ArrayList<>();
     String[] imageUrls = new String[8];
     Boolean wait;
+    Music music;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        initializeVariable();
+        doubleUrl();
+        randomizeUrlArray();
+        downloadImages();
+        setListener();
+    }
 
-        wait=false;
+    private void initializeVariable(){
+        wait = false;
         imageUrls[0] = "https://www.ssbwiki.com/images/1/11/SSBUSmashBall.png";
         imageUrls[1] = "https://banner2.kisspng.com/20180723/oor/kisspng-magic-the-gathering-duels-of-the-planeswalker-magic-the-gathering-logo-5b55c4287f14b0.3599000515323474325205.jpg";
         imageUrls[2] = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Firefox_Logo%2C_2017.svg/1200px-Firefox_Logo%2C_2017.svg.png";
@@ -44,13 +53,7 @@ public class GameActivity extends AppCompatActivity {
         imageUrls[5] = "https://upload.wikimedia.org/wikipedia/fr/d/d1/Spotify_logo_sans_texte.svg.png";
         imageUrls[6] = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Tux.png/220px-Tux.png";
         imageUrls[7] = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png";
-        doubleUrl();
-        randomizeUrlArray();
-        downloadImages();
-        setListener();
-
-        //downloadImage("https://www.ssbwiki.com/images/1/11/SSBUSmashBall.png");
-        //displayCards();
+        music = new Music(MediaPlayer.create(this, R.raw.victory));
     }
 
     private void doubleUrl(){
@@ -167,6 +170,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void win(){
         Toast.makeText(this, "WIN", Toast.LENGTH_LONG).show();
+        music.start();
         sendToMain();
     }
 
