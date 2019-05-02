@@ -31,7 +31,7 @@
         android:text="Menu Principal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_custom_tiles" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -61,7 +61,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_add_custom_tiles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
