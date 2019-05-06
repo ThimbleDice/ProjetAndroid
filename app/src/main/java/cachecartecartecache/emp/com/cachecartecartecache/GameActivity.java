@@ -23,10 +23,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,6 +51,7 @@ public class GameActivity extends AppCompatActivity {
     Music music;
     NotificationManager notificationManager;
     FirebaseFirestore db;
+    StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,7 @@ public class GameActivity extends AppCompatActivity {
     private void initializeVariable(){
         wait = false;
         db = FirebaseFirestore.getInstance();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
         music = new Music(MediaPlayer.create(this, R.raw.victory));
         getImagesUrl();
     }
@@ -292,14 +298,22 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void downloadImage(String imageId ,String imageUrl){
-        CardImageDownloader cardImageDownloader = new CardImageDownloader(imageId);
-        try{
-            cardImageDownloader.execute(imageUrl);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    private void downloadImage(final String imageId ,String imageName){
+        String path = "ImagePrincipale/"+imageName+".png";
+        String test = "asdf";
+        mStorageRef.child(path).getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                cardImageDownloded(imageId, BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getApplicationContext(), "Failed to download, please try again later", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     public class CardImageDownloader extends AsyncTask<String, Void, Bitmap> {
 

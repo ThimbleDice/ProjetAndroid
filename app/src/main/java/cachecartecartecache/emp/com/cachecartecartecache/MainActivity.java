@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -31,19 +32,16 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
-    private StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setListener();
-        mStorageRef = FirebaseStorage.getInstance().getReference();
-        uploadImage();
-        downloadImage("ImagePrincipale/250px-Zelda_SSBU.png");
     }
 
     private void setListener(){
@@ -71,18 +69,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(sendToCustomTiles);
     }
 
-    private void uploadImage(){
+    private void uploadImageFromImageView(ImageView imageView){
         // Get the data from an ImageView as bytes
-        ImageView imageView = findViewById(R.id.imageView_smashBall);
         imageView.setDrawingCacheEnabled(true);
         imageView.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] data = baos.toByteArray();
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
-        String md5String = md5(simpleDateFormat.format(new Date()));
+        final String md5String = md5(simpleDateFormat.format(new Date()));
         final StorageReference thatRef = mStorageRef.child("ImagePrincipale/"+md5String+".png");
         UploadTask uploadTask = thatRef.putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -94,24 +91,31 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Toast.makeText(MainActivity.this, "onSuccess", Toast.LENGTH_SHORT).show();
+                addImageToFirestore(md5String);
             }
         });
     }
 
-    private void downloadImage(String fileName){
-        mStorageRef.child(fileName).getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                // Use the bytes to display the image
-                ImageView imageView = findViewById(R.id.imageView_smashBall);
-                imageView.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(MainActivity.this, "Failed to download, please try again later", Toast.LENGTH_SHORT).show();
-            }
-        });
+    private void addImageToFirestore(String imageName){
+        // Create a new user with a first, middle, and last name
+        Map<String, Object> image = new HashMap<>();
+        image.put("Lien", imageName);
+
+        // Add a new document with a generated ID
+        db.collection("Image")
+                .add(image)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("Caliss", "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Caliss", "Error adding document", e);
+                    }
+                });
     }
 
     public String md5(String s) {
