@@ -13,6 +13,7 @@ import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,6 +50,8 @@ public class GameActivity extends AppCompatActivity {
     Boolean wait;
     Music music;
     NotificationManager notificationManager;
+    FirebaseFirestore db;
+    StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +59,38 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         createNotificationChannel();
         initializeVariable();
-        doubleUrl();
-        randomizeUrlArray();
-        downloadImages();
-        setListener();
     }
 
     private void initializeVariable(){
         wait = false;
-        imageUrls[0] = "https://www.ssbwiki.com/images/1/11/SSBUSmashBall.png";
-        imageUrls[1] = "https://banner2.kisspng.com/20180723/oor/kisspng-magic-the-gathering-duels-of-the-planeswalker-magic-the-gathering-logo-5b55c4287f14b0.3599000515323474325205.jpg";
-        imageUrls[2] = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Firefox_Logo%2C_2017.svg/1200px-Firefox_Logo%2C_2017.svg.png";
-        imageUrls[3] = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/1024px-Google_Chrome_icon_%28September_2014%29.svg.png";
-        imageUrls[4] = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Android_robot.svg/872px-Android_robot.svg.png";
-        imageUrls[5] = "https://upload.wikimedia.org/wikipedia/fr/d/d1/Spotify_logo_sans_texte.svg.png";
-        imageUrls[6] = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Tux.png/220px-Tux.png";
-        imageUrls[7] = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png";
+        db = FirebaseFirestore.getInstance();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
         music = new Music(MediaPlayer.create(this, R.raw.victory));
+        getImagesUrl();
+    }
+
+    private void getImagesUrl(){
+        db.collection("Image")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<String> urls = new ArrayList<>();
+                            for (DocumentSnapshot document : task.getResult()) {
+                                urls.add(document.getData().get("Lien").toString());
+                            }
+                            chooseUrlsAtRandom(urls);
+                            String[] test = imageUrls;
+                            doubleUrl();
+                            randomizeUrlArray();
+                            downloadImages();
+                            setListener();
+                        } else {
+                            Log.w("dataBase", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
 
     private void createNotificationChannel(){
@@ -75,6 +103,8 @@ public class GameActivity extends AppCompatActivity {
             channel.setDescription(channelDescription);
             notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
+        }else{
+            notificationManager = getSystemService(NotificationManager.class);
         }
     }
 
@@ -118,6 +148,22 @@ public class GameActivity extends AppCompatActivity {
         for (int i=0; i<max; i++) {
             int n = rand.nextInt(max-i);
             newImageUrls[i] = imageUrls[ids.get(n)];
+            ids.remove(n);
+        }
+        imageUrls = newImageUrls;
+    }
+
+    private void chooseUrlsAtRandom(List<String> urls){
+        Random rand = new Random();
+        int max = urls.size();
+        List<Integer> ids = new ArrayList<>();
+        for (int i=0; i<max; i++) {
+            ids.add(i);
+        }
+        String[] newImageUrls = new String[8];
+        for (int i=0; i<8; i++) {
+            int n = rand.nextInt(max-i);
+            newImageUrls[i] = urls.get(ids.get(n));
             ids.remove(n);
         }
         imageUrls = newImageUrls;
@@ -254,14 +300,22 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void downloadImage(String imageId ,String imageUrl){
-        CardImageDownloader cardImageDownloader = new CardImageDownloader(imageId);
-        try{
-            cardImageDownloader.execute(imageUrl);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    private void downloadImage(final String imageId ,String imageName){
+        String path = "ImagePrincipale/"+imageName+".png";
+        String test = "asdf";
+        mStorageRef.child(path).getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                cardImageDownloded(imageId, BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getApplicationContext(), "Failed to download, please try again later", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     public class CardImageDownloader extends AsyncTask<String, Void, Bitmap> {
 
