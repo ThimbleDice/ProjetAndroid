@@ -103,6 +103,8 @@ public class GameActivity extends AppCompatActivity {
             channel.setDescription(channelDescription);
             notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
+        }else{
+            notificationManager = getSystemService(NotificationManager.class);
         }
     }
 
