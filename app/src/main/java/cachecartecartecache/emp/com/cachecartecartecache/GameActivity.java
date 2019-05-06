@@ -316,37 +316,6 @@ public class GameActivity extends AppCompatActivity {
         });
     }
 
-
-    public class CardImageDownloader extends AsyncTask<String, Void, Bitmap> {
-
-        String cardId;
-
-        public CardImageDownloader(String imageId) {
-            this.cardId = imageId;
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            try{
-                URL url = new URL(urls[0]);
-                HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-                connection.connect();
-                InputStream inputStream = connection.getInputStream();
-                Bitmap imageBitmap = BitmapFactory.decodeStream(inputStream);
-                return imageBitmap;
-            }catch (MalformedURLException e){
-                e.printStackTrace();
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Bitmap bitmap){
-            cardImageDownloded(this.cardId, bitmap);
-        }
-    }
-
     private void cardImageDownloded(String cardId, Bitmap bitmap){
         cards.add(new Card(bitmap, cardId));
         if(cards.size() == 16){
